@@ -1,4 +1,4 @@
-#Libraries used for pt100:
+### Libraries used for pt100:
 
     pip3 install adafruit-circuitpython-ads1x15
    
