@@ -5,10 +5,18 @@
     pip3 install adafruit-circuitpython-lis3dh
     
     pip3 install sympy
+ ### Libraries used for radiation sensor
     
     sudo apt-get install python3-rpi.gpio
     
     sudo pip3 install PiPocketGeiger
+    
+ ### Libraries for humidity sensor
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get install python3-dev python3-pip
+    sudp python3 -m pip install --upgrade pip setuptools wheel
+    sudo pip3 install Adafruit_DHT
 
 run only on python3 
 
