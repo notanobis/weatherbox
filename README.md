@@ -5,6 +5,10 @@
     pip3 install adafruit-circuitpython-lis3dh
     
     pip3 install sympy
+    
+    sudo apt-get install python3-rpi.gpio
+    
+    sudo pip3 install PiPocketGeiger
 
 run only on python3 
 
