@@ -101,3 +101,5 @@ class RadiationWatch:
         while 1:
             print(radiationWatch.status())
             time.sleep(1)'''
+# we are going to use : from radiation(file) import RadiatonWatch
+# and then if __name ...  use the radiation.status() from the class above
