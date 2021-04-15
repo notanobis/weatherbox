@@ -73,24 +73,20 @@ def temps():
         if T1[z]>=-200 and T1[z]<=300:
             T1[z]=float("{:.2f}".format(T1[z]))
             temp.append(T1[z])
-        z=z+1
 
     for z in range(0,len(T2)):
         if T2[z]>=-200 and T2[z]<=300:
             T2[z]=float("{:.2f}".format(T2[z]))
             temp.append(T2[z])
-        z=z+1 
 
     for z in range(0,len(T3)):
         if T3[z]>=-200 and T3[z]<=300:
             T3[z]=float("{:.2f}".format(T3[z]))
             temp.append(T3[z])
-        z=z+1
 
     for z in range(0,len(T4)):
         if T4[z]>=-200 and T4[z]<=300:
             T4[z]=float("{:.2f}".format(T4[z]))
             temp.append(T4[z])
-        z=z+1
 
     return temp
