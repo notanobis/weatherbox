@@ -1,7 +1,6 @@
 import socket
 import ipaddress
-from humidity import take_data
-from radiation3 import RadiationWatch
+from all import*
 import time
 
 #from humidity import take_data
@@ -37,5 +36,6 @@ if __name__ == "__main__":
         while 1:
             # ... and simply print readings each 1 seconds.
             send(str(radiationWatch.status()))
-            send(str(take_data()))
+            send(str(take_hum_temp()))
+            sen(str(temps()))
             time.sleep(1)
