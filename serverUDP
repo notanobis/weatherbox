@@ -1,0 +1,43 @@
+import socket
+import threading
+
+HEADER = 64  # in the first msg to the server from client is going to tell us the length of the msf tha is going to come next
+
+PORT = 6000
+HOST = '192.168.1.82'
+# ADDR = ('', PORT)
+FORMAT = 'utf-8'
+DISCONNECT_MESSAGE = 'DISCONNECT'  # close the connection and disconnect client from server
+server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server.bind(('192.168.1.82', 6000))
+
+
+def handle_client(conn, addr):  # handle individual connection
+    print(f"[NEW CONNECTION] {addr} connected.\n")
+
+    connected = True
+    while connected:
+        msg_length = conn.recv(HEADER).decode(FORMAT)  # the received msg -> wait until smthg is send from the socket
+        # inside the recv() we have how many bytes we receive from the client so i create a header
+        if msg_length:
+            msg_length = int(msg_length)
+            msg = conn.recvfrom(msg_length).decode(FORMAT)
+            if msg == DISCONNECT_MESSAGE:
+                connected = False
+            else:
+                server.sendto(msg, addr)
+            print(f"[{addr}] {msg}")  # address of client and the msg
+    conn.close()
+
+
+def start(conn, addr):  # handle new connection
+    print(f"[LISTENING] Server is listening on {HOST}")
+    while True:
+        thread = threading.Thread(target=handle_client, args=(conn, addr))
+        thread.start()
+        print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}")  # print active connections
+
+
+print("[STARTING] server is starting...")
+
+start(conn, addr)
