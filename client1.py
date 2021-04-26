@@ -1,20 +1,20 @@
 import socket
 import ipaddress
-from all import*
+from all1 import*
 import time
+import datetime
 
 #from humidity import take_data
 
 HEADER = 64
-PORT = 5050
+PORT = 5051
 FORMAT = 'utf-8'
 
 DISCONNECT_MESSAGE = 'DISCONNECT'
-SERVER = ipaddress.ip_address("192.168.1.4")
+SERVER = ipaddress.ip_address("192.168.0.103")
 ADDR = (str(SERVER),PORT)
-print(ADDR)
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(ADDR) # in server -> bind
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+client.connect(ADDR) # inerver -> bind
 
 def send(msg):
     message = msg.encode(FORMAT) #from string to bytes in order to send the msg
@@ -33,9 +33,13 @@ def send(msg):
 if __name__ == "__main__":
     # Create the RadiationWatch object, specifying the used GPIO pins ...
     with RadiationWatch(24, 23) as radiationWatch:
+        
         while 1:
             # ... and simply print readings each 1 seconds.
-            send(str(radiationWatch.status()))
-            send(str(take_hum_temp()))
-            sen(str(temps()))
-            time.sleep(1)
+            dict1 = {"TEMP" : take_temp(),
+                    "HUM" : take_hum(),
+                     "TIME": str(datetime.datetime.now()),
+                     "TEMP_OUT" : temps()}
+            send(str(dict1))
+            #print(all_the_data())
+
