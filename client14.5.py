@@ -61,24 +61,7 @@ def send_temp_pt100():
         pt100_tw = temps("West", 3)
         pt100_tw['date'] = datetime.now()
         send(pt100_tw)
-      
-def send_temp_pt100_South():
-    while 1:
-        pt100_t = temps("South", 2)
-        pt100_t['date'] = datetime.now()
-        send(pt100_t)
 
-def send_temp_pt100_North():
-    while 1:
-        pt100_t = temps("North", 1)
-        pt100_t['date'] = datetime.now()
-        send(pt100_t)
-
-def send_temp_pt100_West():
-    while 1:
-        pt100_t = temps("West", 3)
-        pt100_t['date'] = datetime.now()
-        send(pt100_t)
 
 rs = threading.Thread(target = send_radiation)
 hs = threading.Thread(target = send_hum)
